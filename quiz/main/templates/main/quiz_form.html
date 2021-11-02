@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+    {% block content %}
+        <h2>{{quiz.name}}</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for item in results %}
+                {% if item.question.question_type == 'one choice' %}
+                    <h3>{{ item.question.question_text }}</h3>
+                    {% for elem in item.answers %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="{{item.question.pk}}" id="exampleRadios1" value="{{elem.answer}}" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                {{ elem.answer }}
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                {% elif item.question.question_type == 'several choices' %}
+                    <h3>{{ item.question.question_text }}</h3>
+                    {% for elem in item.answers %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="{{item.question.pk}}" value="{{elem.answer}}" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                              {{ elem.answer }}
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <h3>{{ item.question.question_text }}</h3>
+                    <div class="form-group">
+                        <input id="question-text" type="text" name="{{item.question.pk}}">
+                    </div>
+                {% endif%}
+            {% endfor %}
+            <input id="quiz-submit" type="submit">
+        </form>
+    {% endblock %}
+
+
+</body>
+</html>

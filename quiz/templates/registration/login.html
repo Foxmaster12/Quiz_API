@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Log in</h1>
+    {% if next %}
+    <form action="/login/?next= {{next}}" method="post"></form>
+    {% else %}
+    <form action="/login/" method="post">
+        {% endif %}
+        {% csrf_token %}
+        {{ form }}
+        <input id="submit-btn" type="submit" value="Send">
+    </form>
+</body>
+</html>
