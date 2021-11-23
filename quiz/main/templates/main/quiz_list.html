@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Complited quizes</title>
 </head>
 <body>
     <h1>Complited quizes</h1>
@@ -10,12 +10,12 @@
         {% for key, value in data.items %}
             <h3> Quiz name: {{key}}</h3>
             {% for elem in value %}
-                <h5>{{elem.text}} {{elem.answer}}</h5>
+                <h5>{{elem.text}}: {{elem.answer}}</h5>
             {% endfor %}
         {% endfor%}
     {% endfor %}
 
-<a class="btn btn-primary" href="/main/" role="button">Return to the main page</a>
+<a class="btn btn-primary" href="{% url 'start_page' %}" role="button">Return to the main page</a>
 
 </body>
 </html>

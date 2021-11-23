@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Quiz list</title>
 </head>
 <body>
 
@@ -14,11 +14,14 @@
     {% for item in quiz%}
     <div>
         <h3>{{item.name}}</h3>
-        <a class="btn btn-primary" href="/main/pass_quiz/{{item.name}}" role="button">Pass quiz</a>
-        <a class="btn btn-primary" href="/main/pass_quiz/{{item.name}}/anon" role="button">Pass anonymously</a>
+        <a class="btn btn-primary" href="{% url 'quiz_passer' item.name %}" role="button">Pass quiz</a>
+        <a class="btn btn-primary" href="{% url 'anon_quiz_passer' item.name %}" role="button">Pass anonymously</a>
     </div>
     {% endfor%}
-
-
+    <div style="margin-top: 30px; ">
+        <a id="ending link" class="btn btn-primary" href="{% url 'start_page' %}" role="button" style="padding: 30">
+        Go to the main page
+        </a>
+    </div>
 </body>
 </html>
